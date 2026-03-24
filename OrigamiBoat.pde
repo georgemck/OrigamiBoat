@@ -2,7 +2,6 @@
 
 // Variables
 PImage boatImage;
-PGraphics pg;
 
 // Constants
 int Y_AXIS = 1;
@@ -11,9 +10,7 @@ color outlineColor, c1, c2;
 
 void setup(){
     size(1255,848);
-    //use processing graphic for drawing an image for better performance
-    pg = createGraphics(1255,848);
-    //preload image for better performance
+    
     boatImage = loadImage("Gemini_Generated_Image_dgq4i5dgq4i5dgq4.png");
     // Define colors
     outlineColor = color(0,0,255);
@@ -22,86 +19,80 @@ void setup(){
 }
 
 void draw(){
-    //hold the space bar or press the mouse button to see the original image of the origami boat
-    int b = ((keyPressed && key == ' ' )|| mousePressed) ? 1 : 0;
-    switch (b) {
-    case 1:
-        image(boatImage, 0, 0);
-        break; // Exits the switch statement
-    case 0:
-        fill(255);
-        setGradient(0, 0, width, height, c1, c2, Y_AXIS);
-        setGradient(50, 190, width, height, c2, c1, X_AXIS);
-        break;
-    // ...
-    default:
-        // code block for no match
-    }
-    pg.beginDraw();
-    pg.clear(); // Clear PGraphics buffer to be fully transparent
-    // Draw shapes or load images into 'pg' here
+        //hold the space bar or press the mouse button to see the original image of the origami boat
+        int b = ((keyPressed && key == ' ' )|| mousePressed) ? 1 : 0;
+        int m = (mousePressed) ? 1 : 0;
+        
+        switch (b) {
+        case 1:
+            image(boatImage, 0, 0);
+            break; // Exits the switch statement
+        case 0:
+            fill(255);
+            setGradient(0, 0, width, height, c1, c2, Y_AXIS);
+            setGradient(50, 190, width, height, c2, c1, X_AXIS);
+            break;
+        // ...
+        default:
+            // code block for no match
+        }
 
-
-        beginShape();
-            stroke(outlineColor);
-            strokeWeight(4);
-            vertex( 21 , 249 );
-            vertex( 588 , 336 );
-            vertex( 634 , 293 );
-            vertex( 686 , 336 );
-            vertex( 1252 , 229 );
-            vertex( 992 , 624 );
-            vertex( 299 , 633 );
-        endShape(CLOSE);
-        beginShape();
-            strokeWeight(4);
-            stroke(outlineColor);
-            vertex( 21 , 249 );  
-            vertex( 465 , 452 );
-            vertex( 588 , 336 );
-        endShape();
-        beginShape();
-            strokeWeight(4);
-            stroke(outlineColor);
-            vertex( 465 , 452 );
-            vertex( 633 , 522 );
-            vertex( 634 , 293 );
-        endShape();
-        beginShape();
-            strokeWeight(4);
-            stroke(outlineColor);
-            vertex( 633 , 522 );
-            vertex( 808 , 451 );
-            vertex( 686 , 336 );
-        endShape();
-        beginShape();
-            strokeWeight(4);
-            stroke(outlineColor);
-            vertex( 808 , 451 );
-            vertex( 1013 , 355 );
-            vertex( 1252 , 229 );
-        endShape();
-        beginShape();
-            strokeWeight(4);
-            stroke(outlineColor);
-            vertex( 633 , 522 );
-            vertex( 299 , 633 );
-        endShape();
-        beginShape();
-            strokeWeight(4);
-            stroke(outlineColor);
-            vertex( 992 , 624 );
-            vertex( 633 , 522 );
-        endShape();
-    pg.endDraw();
-
-  // Draw the PGraphics buffer onto the main sketch
-  image(pg, 0, 0); 
-
+        if(m==0){
+            beginShape();
+                stroke(outlineColor);
+                strokeWeight(4);
+                vertex( 21 , 249 );
+                vertex( 588 , 336 );
+                vertex( 634 , 293 );
+                vertex( 686 , 336 );
+                vertex( 1252 , 229 );
+                vertex( 992 , 624 );
+                vertex( 299 , 633 );
+            endShape(CLOSE);
+            beginShape();
+                strokeWeight(4);
+                stroke(outlineColor);
+                vertex( 21 , 249 );  
+                vertex( 465 , 452 );
+                vertex( 588 , 336 );
+            endShape();
+            beginShape();
+                strokeWeight(4);
+                stroke(outlineColor);
+                vertex( 465 , 452 );
+                vertex( 633 , 522 );
+                vertex( 634 , 293 );
+            endShape();
+            beginShape();
+                strokeWeight(4);
+                stroke(outlineColor);
+                vertex( 633 , 522 );
+                vertex( 808 , 451 );
+                vertex( 686 , 336 );
+            endShape();
+            beginShape();
+                strokeWeight(4);
+                stroke(outlineColor);
+                vertex( 808 , 451 );
+                vertex( 1013 , 355 );
+                vertex( 1252 , 229 );
+            endShape();
+            beginShape();
+                strokeWeight(4);
+                stroke(outlineColor);
+                vertex( 633 , 522 );
+                vertex( 299 , 633 );
+            endShape();
+            beginShape();
+                strokeWeight(4);
+                stroke(outlineColor);
+                vertex( 992 , 624 );
+                vertex( 633 , 522 );
+            endShape();
+        }
 }
 
 void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
-
   noFill();
 
   if (axis == Y_AXIS) {  // Top to bottom gradient
@@ -117,4 +108,3 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
 void mouseClicked(){
     println("vertex(",mouseX,",",mouseY,");");
 }
-
